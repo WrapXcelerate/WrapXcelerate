@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mod Menu</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Impact, sans-serif;
+            margin: 0;
+            background-color: #2C3E50;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .menu {
+            width: 200px;
+            background-color: #34495E;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .menu button {
+            background-color: #5D6D7E;
+            border: none;
+            padding: 15px;
+            color: white;
+            text-align: left;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .menu button:hover, .menu button.active {
+            background-color: #2980B9;
+        }
+
+        .content {
+            flex: 1;
+            background-color: #2C3E50;
+            padding: 20px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .checkbox {
+            margin-bottom: 10px;
+        }
+
+        .panel {
+            margin-top: 10px;
+        }
+
+        .panel select {
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        .slider {
+            margin-top: 10px;
+        }
+
+        .slider input {
+            width: 100%;
+        }
+
+        .info-section {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .info-section h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="menu">
+        <button class="tab-button active" data-tab="visual">VISUAL</button>
+        <button class="tab-button" data-tab="aim">AIM</button>
+        <button class="tab-button" data-tab="misc">MISC</button>
+        <button class="tab-button" data-tab="info">INFO</button>
+    </div>
+
+    <div class="content">
+        <!-- Visual Tab -->
+        <div class="tab-content active" id="visual">
+            <div class="checkbox"><input type="checkbox"> ESP</div>
+            <div class="checkbox"><input type="checkbox"> Line</div>
+            <div class="checkbox"><input type="checkbox"> Box</div>
+            <div class="checkbox"><input type="checkbox"> Bone</div>
+            <div class="panel">
+                <label for="esp-options">ESP Options:</label>
+                <select id="esp-options">
+                    <option value="top">Top</option>
+                    <option value="bottom">Bottom</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Aim Tab -->
+        <div class="tab-content" id="aim">
+            <div class="checkbox"><input type="checkbox"> Aimbot</div>
+            <div class="panel">
+                <label for="aim-mode">Aimbot Mode:</label>
+                <select id="aim-mode">
+                    <option value="silent">Silent Aim</option>
+                    <option value="physical">Physical Aim</option>
+                </select>
+            </div>
+            <div class="checkbox"><input type="checkbox"> Aim FOV</div>
+            <div class="slider">
+                <label for="fov-slider">FOV Range:</label>
+                <input type="range" id="fov-slider" min="1" max="100" value="50">
+            </div>
+            <div class="checkbox"><input type="checkbox"> Visible FOV</div>
+        </div>
+
+        <!-- Misc Tab -->
+        <div class="tab-content" id="misc">
+            <div class="checkbox"><input type="checkbox"> No Recoil</div>
+            <div class="checkbox"><input type="checkbox"> No Spread</div>
+            <div class="checkbox"><input type="checkbox"> Character Indicators</div>
+            <div class="checkbox"><input type="checkbox"> Wallshot</div>
+            <div class="checkbox"><input type="checkbox"> Speed</div>
+        </div>
+
+        <!-- Info Tab -->
+        <div class="tab-content" id="info">
+            <div class="info-section">
+                <h2>About the Cheat</h2>
+                <p><strong>Creator:</strong> Wrap</p>
+                <p><strong>Cheat Name:</strong> Cheat Name</p>
+                <p><strong>Game Version:</strong> x.x.xVersion</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const buttons = document.querySelectorAll('.tab-button');
+    const contents = document.querySelectorAll('.tab-content');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            buttons.forEach(btn => btn.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+
+            button.classList.add('active');
+            document.getElementById(button.getAttribute('data-tab')).classList.add('active');
+        });
+    });
+</script>
+
+</body>
+</html>
